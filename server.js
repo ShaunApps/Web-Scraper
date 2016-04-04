@@ -27,7 +27,23 @@ app.get('/scrape', function(req, res){
 
         title = data.children().first().text();
 
+        release = data.children().last().children().text();
+
+
         json.title = title;
+
+        json.release = release;
+      })
+
+      $('.star-box-giga-star').filter(function(){
+          var data = $(this);
+
+          // The .star-box-giga-star class was exactly where we wanted it to be.
+          // To get the rating, we can simply just get the .text(), no need to traverse the DOM any further
+
+          rating = data.text();
+
+          json.rating = rating;
       })
     }
   })
